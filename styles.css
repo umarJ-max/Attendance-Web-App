@@ -1011,6 +1011,8 @@ body.dark-mode .subject-card {
 @media (max-width: 768px) {
     body {
         flex-direction: column;
+        overflow-y: auto;
+        height: auto;
     }
 
     .sidebar {
@@ -1053,10 +1055,12 @@ body.dark-mode .subject-card {
     }
 
     .main-content {
-        overflow: visible;
+        overflow: auto;
+        flex: 1;
     }
 
     .tab-content {
+        overflow-y: auto;
         padding: 20px 16px;
     }
 
@@ -1910,6 +1914,8 @@ body {
 @media (max-width: 768px) {
     body {
         flex-direction: column;
+        overflow-y: auto;
+        height: auto;
     }
 
     .sidebar {
@@ -1946,10 +1952,12 @@ body {
     }
 
     .main-content {
-        overflow: visible;
+        overflow: auto;
+        flex: 1;
     }
 
     .tab-content {
+        overflow-y: auto;
         padding: 20px 16px;
     }
 
