@@ -1013,9 +1013,9 @@ body.dark-mode .subject-card {
     border-top: 1px solid var(--border);
     padding: 16px 20px;
     text-align: center;
-    margin-top: auto;
     font-size: 12px;
     color: var(--text-secondary);
+    margin-top: 32px;
 }
 
 .footer-content p {
