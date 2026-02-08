@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StudyTrack - Professional attendance and academic progress tracker for students">
+    <meta name="theme-color" content="#6366f1">
+    <title>StudyTrack - Academic Attendance Tracker</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%236366f1' /><stop offset='100%' style='stop-color:%238b5cf6' /></linearGradient></defs><rect fill='url(%23grad)' width='100' height='100'/><path d='M 30 40 L 45 55 L 70 30' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%236366f1' /><stop offset='100%' style='stop-color:%238b5cf6' /></linearGradient></defs><rect fill='url(%23grad)' width='192' height='192'/><path d='M 60 80 L 90 110 L 140 60' stroke='white' stroke-width='16' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <svg viewBox="0 0 40 40" width="40" height="40">
+                    <defs><linearGradient id="logoGrad"><stop offset="0%" style="stop-color:#6366f1"/><stop offset="100%" style="stop-color:#8b5cf6"/></linearGradient></defs>
+                    <rect fill="url(#logoGrad)" width="40" height="40" rx="8"/>
+                    <path d="M 12 16 L 20 24 L 28 12" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>StudyTrack</span>
+            </div>
+            <button id="themeToggle" class="theme-toggle" title="Toggle dark mode">🌙</button>
+        </div>
+        <nav class="nav-menu">
+            <a href="#" class="nav-item active" data-tab="dashboard">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="attendance">
+                <span class="nav-icon">✓</span>
+                <span class="nav-label">Attendance</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="subjects">
+                <span class="nav-icon">📚</span>
+                <span class="nav-label">Subjects</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="analytics">
+                <span class="nav-icon">📈</span>
+                <span class="nav-label">Analytics</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="settings">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <p id="syncStatus" class="sync-status">🔴 Offline</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Tab -->
+        <div class="tab-content active" id="dashboard-tab">
+            <div class="page-header">
+                <div>
+                    <h1>Welcome Back Umar!</h1>
+                    <p class="date-display" id="dateDisplay"></p>
+                </div>
+                <div class="quick-action">
+                    <button id="quickPresentBtn" class="btn btn-lg btn-present">
+                        <span class="btn-icon">✓</span>
+                        <span>Mark Present</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Today's Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Today's Status</h2>
+                </div>
+                <div class="card-body">
+                    <div class="today-status" id="todayStatus">
+                        <p class="empty-state">No attendance marked yet</p>
+                    </div>
+                    <div class="button-group" style="margin-top: 20px;">
+                        <button id="markPresentBtn" class="btn btn-present-outline">Mark Present</button>
+                        <button id="markAbsentBtn" class="btn btn-absent-outline">Mark Absent</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overview Stats -->
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon present">✓</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="presentCount">0</div>
+                        <div class="stat-label">Days Present</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon absent">✗</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="absentCount">0</div>
+                        <div class="stat-label">Days Absent</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                        %
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="attendancePercentage">0%</div>
+                        <div class="stat-label">Attendance Rate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Recent Activity</h2>
+                    <a href="#" class="card-action" data-tab="attendance">View All</a>
+                </div>
+                <div class="card-body">
+                    <div id="recentActivity" class="activity-list">
+                        <p class="empty-state">No recent activity</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Attendance Tab -->
+        <div class="tab-content" id="attendance-tab">
+            <div class="page-header">
+                <h1>Attendance Records</h1>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Mark Subject Attendance</h2>
+                    <span class="help-icon" title="Select your subject, then mark attendance for that specific class">?</span>
+                </div>
+                <div class="card-body">
+                    <div class="attendance-form">
+                        <div class="form-group">
+                            <label>Select Subject *</label>
+                            <select id="subjectSelect" class="form-input" required>
+                                <option value="">Choose a subject for today...</option>
+                            </select>
+                            <small class="form-hint">This marks attendance for a specific class/subject</small>
+                        </div>
+                        <div class="button-group">
+                            <button id="markPresentBtn2" class="btn btn-present">
+                                <span>✓ Present Today</span>
+                            </button>
+                            <button id="markAbsentBtn2" class="btn btn-absent">
+                                <span>✗ Absent Today</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>All Records</h2>
+                    <button id="clearHistoryBtn" class="btn btn-small btn-danger">Clear History</button>
+                </div>
+                <div class="card-body">
+                    <div id="historyList" class="history-list">
+                        <p class="empty-state">No records yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subjects Tab -->
+        <div class="tab-content" id="subjects-tab">
+            <div class="page-header">
+                <h1>My Subjects</h1>
+                <button id="addSubjectBtn" class="btn btn-primary">+ Add Subject</button>
+            </div>
+
+            <div id="subjectsList" class="subjects-grid">
+                <p class="empty-state">No subjects added yet</p>
+            </div>
+        </div>
+
+        <!-- Analytics Tab -->
+        <div class="tab-content" id="analytics-tab">
+            <div class="page-header">
+                <h1>Analytics & Reports</h1>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Overall Performance</h2>
+                </div>
+                <div class="card-body">
+                    <div class="analytics-container">
+                        <div class="progress-circle">
+                            <svg width="200" height="200">
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="#e5e7eb" stroke-width="8"/>
+                                <circle id="progressCircle" cx="100" cy="100" r="90" fill="none" stroke="url(#progressGrad)" stroke-width="8" stroke-dasharray="565" stroke-dashoffset="565" transform="rotate(-90 100 100)" style="transition: stroke-dashoffset 0.5s ease;"/>
+                                <defs>
+                                    <linearGradient id="progressGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#6366f1"/>
+                                        <stop offset="100%" style="stop-color:#8b5cf6"/>
+                                    </linearGradient>
+                                </defs>
+                                <text x="100" y="105" text-anchor="middle" font-size="32" font-weight="bold" fill="#6366f1" id="progressText">0%</text>
+                            </svg>
+                        </div>
+                        <div class="analytics-stats">
+                            <div class="analytics-item">
+                                <span class="label">Total Classes</span>
+                                <span class="value" id="totalClasses">0</span>
+                            </div>
+                            <div class="analytics-item">
+                                <span class="label">Classes Attended</span>
+                                <span class="value" id="classesAttended">0</span>
+                            </div>
+                            <div class="analytics-item">
+                                <span class="label">Classes Missed</span>
+                                <span class="value" id="classesMissed">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Subject-wise Performance</h2>
+                </div>
+                <div class="card-body">
+                    <div id="subjectAnalytics" class="subject-analytics-list">
+                        <p class="empty-state">No subjects to analyze</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div class="tab-content" id="settings-tab">
+            <div class="page-header">
+                <h1>Settings</h1>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Data Management</h2>
+                </div>
+                <div class="card-body settings-body">
+                    <div class="settings-item">
+                        <div>
+                            <h3>Download Data</h3>
+                            <p>Export your attendance data as JSON</p>
+                        </div>
+                        <button id="downloadDataBtn" class="btn btn-small">📥 Download</button>
+                    </div>
+                    <div class="settings-item">
+                        <div>
+                            <h3>Sync Status</h3>
+                            <p>Check connection status</p>
+                        </div>
+                        <button id="syncBtn" class="btn btn-small">🔄 Check</button>
+                    </div>
+                    <div class="settings-item">
+                        <div>
+                            <h3>Clear All Data</h3>
+                            <p>Remove all records and subjects (cannot be undone)</p>
+                        </div>
+                        <button id="clearAllBtn" class="btn btn-small btn-danger">🗑️ Clear</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>About</h2>
+                </div>
+                <div class="card-body settings-body">
+                    <p><strong>StudyTrack v1.0</strong></p>
+                    <p>Professional attendance tracker for students</p>
+                    <p style="margin-top: 15px; font-size: 12px; color: #6b7280;">Works offline • 100% Private • No ads</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Subject Modal -->
+    <div id="subjectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Subject</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Add New Subject</h2>
+                    <span class="help-icon" title="Code: Optional identifier like CS101, MATH201 for organizing classes">?</span>
+                </div>
+                <div class="card-body">
+                    <input type="text" id="subjectName" class="form-input" placeholder="Subject Name (e.g., Mathematics)" maxlength="50">
+                    <input type="text" id="subjectCode" class="form-input" placeholder="Code (e.g., MATH101) - Optional" maxlength="20">
+                    <div class="form-group">
+                        <label>Subject Color</label>
+                        <input type="color" id="subjectColor" class="form-input-color" value="#6366f1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelSubjectBtn" class="btn btn-secondary">Cancel</button>
+                    <button id="saveSubjectBtn" class="btn btn-primary">Add Subject</button>
+                </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

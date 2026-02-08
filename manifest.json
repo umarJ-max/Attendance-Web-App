@@ -1,0 +1,62 @@
+{
+  "name": "StudyTrack - Academic Attendance Tracker",
+  "short_name": "StudyTrack",
+  "description": "Professional attendance tracker for students with offline support and analytics",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#6366f1",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><defs><linearGradient id='grad'><stop offset='0%' style='stop-color:%236366f1'/><stop offset='100%' style='stop-color:%238b5cf6'/></linearGradient></defs><rect fill='url(%23grad)' width='192' height='192'/><path d='M 60 80 L 90 110 L 140 60' stroke='white' stroke-width='16' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><defs><linearGradient id='grad'><stop offset='0%' style='stop-color:%236366f1'/><stop offset='100%' style='stop-color:%238b5cf6'/></linearGradient></defs><rect fill='url(%23grad)' width='512' height='512'/><path d='M 170 220 L 256 306 L 390 170' stroke='white' stroke-width='50' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["productivity", "education"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%236366f1'/><stop offset='100%' style='stop-color:%238b5cf6'/></linearGradient></defs><rect fill='%23f9fafb' width='540' height='720'/><rect fill='white' width='540' height='160' /><text x='270' y='85' font-size='36' fill='%236366f1' text-anchor='middle' font-weight='bold'>StudyTrack</text><text x='270' y='125' font-size='16' fill='%236b7280' text-anchor='middle'>Track Attendance</text><rect fill='%2310b981' y='200' width='200' height='80' x='50' rx='10'/><text x='150' y='255' font-size='24' fill='white' text-anchor='middle'>✓ Present</text><rect fill='%23ef4444' y='200' width='200' height='80' x='290' rx='10'/><text x='390' y='255' font-size='24' fill='white' text-anchor='middle'>✗ Absent</text><rect fill='%23f3f4f6' y='320' width='440' height='60' x='50' rx='8'/><text x='60' y='355' font-size='14' fill='%236b7280'>📊 View detailed analytics</text><rect fill='%23f3f4f6' y='400' width='440' height='60' x='50' rx='8'/><text x='60' y='435' font-size='14' fill='%236b7280'>📚 Manage multiple subjects</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Mark Present",
+      "short_name": "Present",
+      "description": "Quickly mark yourself as present",
+      "url": "/index.html?action=present",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><defs><linearGradient id='grad'><stop offset='0%' style='stop-color:%2310b981'/><stop offset='100%' style='stop-color:%23059669'/></linearGradient></defs><rect fill='url(%23grad)' width='192' height='192' rx='40'/><path d='M 60 80 L 90 110 L 140 60' stroke='white' stroke-width='16' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Mark Absent",
+      "short_name": "Absent",
+      "description": "Quickly mark yourself as absent",
+      "url": "/index.html?action=absent",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><defs><linearGradient id='grad'><stop offset='0%' style='stop-color:%23ef4444'/><stop offset='100%' style='stop-color:%23dc2626'/></linearGradient></defs><rect fill='url(%23grad)' width='192' height='192' rx='40'/><path d='M 70 70 L 122 122 M 122 70 L 70 122' stroke='white' stroke-width='16' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
+}

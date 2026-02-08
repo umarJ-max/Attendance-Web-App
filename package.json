@@ -1,0 +1,24 @@
+{
+  "name": "studytrack",
+  "version": "1.0.0",
+  "description": "Professional attendance tracker for students with offline support",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 3000",
+    "dev": "python -m http.server 3000"
+  },
+  "keywords": [
+    "attendance",
+    "tracker",
+    "pwa",
+    "offline",
+    "student",
+    "education"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/studytrack"
+  }
+}
