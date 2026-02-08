@@ -149,7 +149,7 @@ function markAttendance(status) {
     const today = new Date();
     const dateKey = today.toISOString().split('T')[0];
     const subjectSelect = document.getElementById('subjectSelect');
-    const selectedSubject = subjectSelect?.value;
+    const selectedSubject = parseInt(subjectSelect?.value); // Convert to number
     
     // Validate that a subject is selected
     if (!selectedSubject) {
