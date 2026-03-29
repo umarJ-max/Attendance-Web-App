@@ -3,323 +3,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="StudyTrack - Professional attendance and academic progress tracker for students">
-    <meta name="theme-color" content="#6366f1">
-    <title>StudyTrack - Academic Attendance Tracker</title>
+    <meta name="theme-color" content="#080b0f">
+    <title>StudyTrack — Umar J</title>
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%236366f1' /><stop offset='100%' style='stop-color:%238b5cf6' /></linearGradient></defs><rect fill='url(%23grad)' width='100' height='100'/><path d='M 30 40 L 45 55 L 70 30' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%236366f1' /><stop offset='100%' style='stop-color:%238b5cf6' /></linearGradient></defs><rect fill='url(%23grad)' width='192' height='192'/><path d='M 60 80 L 90 110 L 140 60' stroke='white' stroke-width='16' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23080b0f'/%3E%3Crect x='22' y='22' width='56' height='56' rx='6' fill='none' stroke='%2322c55e' stroke-width='5'/%3E%3Cpath d='M36 50 L46 60 L64 40' stroke='%2322c55e' stroke-width='5.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">
-                <svg viewBox="0 0 40 40" width="40" height="40">
-                    <defs><linearGradient id="logoGrad"><stop offset="0%" style="stop-color:#6366f1"/><stop offset="100%" style="stop-color:#8b5cf6"/></linearGradient></defs>
-                    <rect fill="url(#logoGrad)" width="40" height="40" rx="8"/>
-                    <path d="M 12 16 L 20 24 L 28 12" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>StudyTrack</span>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-top">
+            <div class="app-logo">
+                <div class="logo-mark">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-name">StudyTrack</span>
+                    <span class="logo-sub">by Umar J</span>
+                </div>
             </div>
-            <button id="themeToggle" class="theme-toggle" title="Toggle dark mode">🌙</button>
         </div>
-        <nav class="nav-menu">
-            <a href="#" class="nav-item active" data-tab="dashboard">
-                <span class="nav-icon">📊</span>
-                <span class="nav-label">Dashboard</span>
+
+        <nav class="sidebar-nav">
+            <a class="nav-item active" data-tab="dashboard">
+                <i class="fas fa-table-cells-large"></i>
+                <span>Dashboard</span>
             </a>
-            <a href="#" class="nav-item" data-tab="attendance">
-                <span class="nav-icon">✓</span>
-                <span class="nav-label">Attendance</span>
+            <a class="nav-item" data-tab="attendance">
+                <i class="fas fa-circle-check"></i>
+                <span>Attendance</span>
             </a>
-            <a href="#" class="nav-item" data-tab="subjects">
-                <span class="nav-icon">📚</span>
-                <span class="nav-label">Subjects</span>
+            <a class="nav-item" data-tab="subjects">
+                <i class="fas fa-book-open"></i>
+                <span>Subjects</span>
             </a>
-            <a href="#" class="nav-item" data-tab="analytics">
-                <span class="nav-icon">📈</span>
-                <span class="nav-label">Analytics</span>
+            <a class="nav-item" data-tab="analytics">
+                <i class="fas fa-chart-line"></i>
+                <span>Analytics</span>
             </a>
-            <a href="#" class="nav-item" data-tab="settings">
-                <span class="nav-icon">⚙️</span>
-                <span class="nav-label">Settings</span>
+            <a class="nav-item" data-tab="settings">
+                <i class="fas fa-sliders"></i>
+                <span>Settings</span>
             </a>
         </nav>
-        <div class="sidebar-footer">
-            <p id="syncStatus" class="sync-status">🔴 Offline</p>
+
+        <div class="sidebar-bottom">
+            <div class="status-pill" id="syncStatus">
+                <span class="status-dot"></span>
+                <span class="status-text">Offline</span>
+            </div>
         </div>
     </aside>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Dashboard Tab -->
-        <div class="tab-content active" id="dashboard-tab">
-            <div class="page-header">
+    <!-- Mobile top bar -->
+    <header class="mobile-header">
+        <div class="app-logo-sm">
+            <div class="logo-mark sm"><i class="fas fa-check"></i></div>
+            <span>StudyTrack</span>
+        </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Mobile nav overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Main -->
+    <main class="main" id="main">
+
+        <!-- ======= DASHBOARD ======= -->
+        <section class="tab-content active" id="dashboard-tab">
+            <div class="page-head">
                 <div>
-                    <h1>Welcome Back Umar!</h1>
-                    <p class="date-display" id="dateDisplay"></p>
+                    <p class="page-date" id="dateDisplay"></p>
+                    <h1 class="page-title">Welcome back, Umar</h1>
                 </div>
-                <div class="quick-action">
-                    <button id="quickPresentBtn" class="btn btn-lg btn-present">
-                        <span class="btn-icon">✓</span>
-                        <span>Mark Present</span>
+                <button class="btn-accent" id="quickPresentBtn">
+                    <i class="fas fa-bolt"></i> Quick Mark
+                </button>
+            </div>
+
+            <!-- Stats row -->
+            <div class="stats-row">
+                <div class="stat-box">
+                    <div class="stat-icon green"><i class="fas fa-check"></i></div>
+                    <div class="stat-val" id="presentCount">0</div>
+                    <div class="stat-lbl">Present</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon red"><i class="fas fa-xmark"></i></div>
+                    <div class="stat-val" id="absentCount">0</div>
+                    <div class="stat-lbl">Absent</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon amber"><i class="fas fa-percent"></i></div>
+                    <div class="stat-val" id="attendancePercentage">—</div>
+                    <div class="stat-lbl">Rate</div>
+                </div>
+            </div>
+
+            <!-- Today status -->
+            <div class="panel">
+                <div class="panel-head">
+                    <span class="panel-title">Today's Status</span>
+                    <div class="btn-pair">
+                        <button class="btn-present" id="markPresentBtn"><i class="fas fa-check"></i> Present</button>
+                        <button class="btn-absent" id="markAbsentBtn"><i class="fas fa-xmark"></i> Absent</button>
+                    </div>
+                </div>
+                <div class="today-status" id="todayStatus">
+                    <span class="empty-msg">No attendance marked yet today</span>
+                </div>
+            </div>
+
+            <!-- Recent activity -->
+            <div class="panel">
+                <div class="panel-head">
+                    <span class="panel-title">Recent Activity</span>
+                    <button class="link-btn" data-tab="attendance">View all</button>
+                </div>
+                <div id="recentActivity">
+                    <p class="empty-msg">No recent activity</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======= ATTENDANCE ======= -->
+        <section class="tab-content" id="attendance-tab">
+            <div class="page-head">
+                <h1 class="page-title">Attendance</h1>
+            </div>
+
+            <div class="panel">
+                <div class="panel-head">
+                    <span class="panel-title">Mark Attendance</span>
+                </div>
+                <div class="mark-form">
+                    <div class="form-row">
+                        <label class="form-label">Select Subject</label>
+                        <select id="subjectSelect" class="form-select">
+                            <option value="">Choose a subject...</option>
+                        </select>
+                    </div>
+                    <div class="btn-pair wide">
+                        <button class="btn-present wide" id="markPresentBtn2">
+                            <i class="fas fa-check"></i> Mark Present
+                        </button>
+                        <button class="btn-absent wide" id="markAbsentBtn2">
+                            <i class="fas fa-xmark"></i> Mark Absent
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-head">
+                    <span class="panel-title">All Records</span>
+                    <button class="btn-danger-sm" id="clearHistoryBtn">
+                        <i class="fas fa-trash"></i> Clear
                     </button>
                 </div>
-            </div>
-
-            <!-- Today's Card -->
-            <div class="card">
-                <div class="card-header">
-                    <h2>Today's Status</h2>
-                </div>
-                <div class="card-body">
-                    <div class="today-status" id="todayStatus">
-                        <p class="empty-state">No attendance marked yet</p>
-                    </div>
-                    <div class="button-group" style="margin-top: 20px;">
-                        <button id="markPresentBtn" class="btn btn-present-outline">Mark Present</button>
-                        <button id="markAbsentBtn" class="btn btn-absent-outline">Mark Absent</button>
-                    </div>
+                <div id="historyList">
+                    <p class="empty-msg">No records yet</p>
                 </div>
             </div>
+        </section>
 
-            <!-- Overview Stats -->
-            <div class="stats-container">
-                <div class="stat-card">
-                    <div class="stat-icon present">✓</div>
-                    <div class="stat-content">
-                        <div class="stat-value" id="presentCount">0</div>
-                        <div class="stat-label">Days Present</div>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon absent">✗</div>
-                    <div class="stat-content">
-                        <div class="stat-value" id="absentCount">0</div>
-                        <div class="stat-label">Days Absent</div>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
-                        %
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-value" id="attendancePercentage">0%</div>
-                        <div class="stat-label">Attendance Rate</div>
-                    </div>
-                </div>
+        <!-- ======= SUBJECTS ======= -->
+        <section class="tab-content" id="subjects-tab">
+            <div class="page-head">
+                <h1 class="page-title">Subjects</h1>
+                <button class="btn-accent" id="addSubjectBtn">
+                    <i class="fas fa-plus"></i> Add Subject
+                </button>
+            </div>
+            <div id="subjectsList">
+                <p class="empty-msg">No subjects yet — add one to start tracking</p>
+            </div>
+        </section>
+
+        <!-- ======= ANALYTICS ======= -->
+        <section class="tab-content" id="analytics-tab">
+            <div class="page-head">
+                <h1 class="page-title">Analytics</h1>
             </div>
 
-            <!-- Recent Activity -->
-            <div class="card">
-                <div class="card-header">
-                    <h2>Recent Activity</h2>
-                    <a href="#" class="card-action" data-tab="attendance">View All</a>
+            <div class="panel">
+                <div class="panel-head">
+                    <span class="panel-title">Overall Performance</span>
                 </div>
-                <div class="card-body">
-                    <div id="recentActivity" class="activity-list">
-                        <p class="empty-state">No recent activity</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Attendance Tab -->
-        <div class="tab-content" id="attendance-tab">
-            <div class="page-header">
-                <h1>Attendance Records</h1>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <h2>Mark Subject Attendance</h2>
-                    <span class="help-icon" title="Select your subject, then mark attendance for that specific class">?</span>
-                </div>
-                <div class="card-body">
-                    <div class="attendance-form">
-                        <div class="form-group">
-                            <label>Select Subject *</label>
-                            <select id="subjectSelect" class="form-input" required>
-                                <option value="">Choose a subject for today...</option>
-                            </select>
-                            <small class="form-hint">This marks attendance for a specific class/subject</small>
+                <div class="analytics-main">
+                    <div class="donut-wrap">
+                        <svg class="donut-svg" viewBox="0 0 200 200">
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="12"/>
+                            <circle id="progressCircle" cx="100" cy="100" r="80" fill="none"
+                                stroke="#22c55e" stroke-width="12"
+                                stroke-dasharray="502" stroke-dashoffset="502"
+                                stroke-linecap="round"
+                                transform="rotate(-90 100 100)"
+                                style="transition: stroke-dashoffset 0.6s cubic-bezier(0.16,1,0.3,1);"/>
+                        </svg>
+                        <div class="donut-center">
+                            <span class="donut-val" id="progressText">0%</span>
+                            <span class="donut-lbl">attendance</span>
                         </div>
-                        <div class="button-group">
-                            <button id="markPresentBtn2" class="btn btn-present">
-                                <span>✓ Present Today</span>
-                            </button>
-                            <button id="markAbsentBtn2" class="btn btn-absent">
-                                <span>✗ Absent Today</span>
-                            </button>
+                    </div>
+                    <div class="analytics-stats">
+                        <div class="a-stat">
+                            <span class="a-stat-val" id="totalClasses">0</span>
+                            <span class="a-stat-lbl">Total Classes</span>
+                        </div>
+                        <div class="a-stat">
+                            <span class="a-stat-val green" id="classesAttended">0</span>
+                            <span class="a-stat-lbl">Attended</span>
+                        </div>
+                        <div class="a-stat">
+                            <span class="a-stat-val red" id="classesMissed">0</span>
+                            <span class="a-stat-lbl">Missed</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <h2>All Records</h2>
-                    <button id="clearHistoryBtn" class="btn btn-small btn-danger">Clear History</button>
+            <div class="panel">
+                <div class="panel-head">
+                    <span class="panel-title">Subject Breakdown</span>
                 </div>
-                <div class="card-body">
-                    <div id="historyList" class="history-list">
-                        <p class="empty-state">No records yet</p>
-                    </div>
+                <div id="subjectAnalytics">
+                    <p class="empty-msg">No subjects to analyze</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Subjects Tab -->
-        <div class="tab-content" id="subjects-tab">
-            <div class="page-header">
-                <h1>My Subjects</h1>
-                <button id="addSubjectBtn" class="btn btn-primary">+ Add Subject</button>
+        <!-- ======= SETTINGS ======= -->
+        <section class="tab-content" id="settings-tab">
+            <div class="page-head">
+                <h1 class="page-title">Settings</h1>
             </div>
 
-            <div id="subjectsList" class="subjects-grid">
-                <p class="empty-state">No subjects added yet</p>
-            </div>
-        </div>
-
-        <!-- Analytics Tab -->
-        <div class="tab-content" id="analytics-tab">
-            <div class="page-header">
-                <h1>Analytics & Reports</h1>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <h2>Overall Performance</h2>
+            <div class="panel">
+                <div class="panel-head">
+                    <span class="panel-title">Data</span>
                 </div>
-                <div class="card-body">
-                    <div class="analytics-container">
-                        <div class="progress-circle">
-                            <svg width="200" height="200">
-                                <circle cx="100" cy="100" r="90" fill="none" stroke="#e5e7eb" stroke-width="8"/>
-                                <circle id="progressCircle" cx="100" cy="100" r="90" fill="none" stroke="url(#progressGrad)" stroke-width="8" stroke-dasharray="565" stroke-dashoffset="565" transform="rotate(-90 100 100)" style="transition: stroke-dashoffset 0.5s ease;"/>
-                                <defs>
-                                    <linearGradient id="progressGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#6366f1"/>
-                                        <stop offset="100%" style="stop-color:#8b5cf6"/>
-                                    </linearGradient>
-                                </defs>
-                                <text x="100" y="105" text-anchor="middle" font-size="32" font-weight="bold" fill="#6366f1" id="progressText">0%</text>
-                            </svg>
+                <div class="settings-list">
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <span class="setting-name">Export Data</span>
+                            <span class="setting-desc">Download records as JSON backup</span>
                         </div>
-                        <div class="analytics-stats">
-                            <div class="analytics-item">
-                                <span class="label">Total Classes</span>
-                                <span class="value" id="totalClasses">0</span>
-                            </div>
-                            <div class="analytics-item">
-                                <span class="label">Classes Attended</span>
-                                <span class="value" id="classesAttended">0</span>
-                            </div>
-                            <div class="analytics-item">
-                                <span class="label">Classes Missed</span>
-                                <span class="value" id="classesMissed">0</span>
-                            </div>
+                        <button class="btn-setting" id="downloadDataBtn">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <span class="setting-name">Connection</span>
+                            <span class="setting-desc">Check online/offline status</span>
                         </div>
+                        <button class="btn-setting" id="syncBtn">
+                            <i class="fas fa-rotate"></i> Check
+                        </button>
                     </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <h2>Subject-wise Performance</h2>
-                </div>
-                <div class="card-body">
-                    <div id="subjectAnalytics" class="subject-analytics-list">
-                        <p class="empty-state">No subjects to analyze</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Settings Tab -->
-        <div class="tab-content" id="settings-tab">
-            <div class="page-header">
-                <h1>Settings</h1>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <h2>Data Management</h2>
-                </div>
-                <div class="card-body settings-body">
-                    <div class="settings-item">
-                        <div>
-                            <h3>Download Data</h3>
-                            <p>Export your attendance data as JSON</p>
+                    <div class="setting-row danger">
+                        <div class="setting-info">
+                            <span class="setting-name">Clear All Data</span>
+                            <span class="setting-desc">Permanently delete all records and subjects</span>
                         </div>
-                        <button id="downloadDataBtn" class="btn btn-small">📥 Download</button>
-                    </div>
-                    <div class="settings-item">
-                        <div>
-                            <h3>Sync Status</h3>
-                            <p>Check connection status</p>
-                        </div>
-                        <button id="syncBtn" class="btn btn-small">🔄 Check</button>
-                    </div>
-                    <div class="settings-item">
-                        <div>
-                            <h3>Clear All Data</h3>
-                            <p>Remove all records and subjects (cannot be undone)</p>
-                        </div>
-                        <button id="clearAllBtn" class="btn btn-small btn-danger">🗑️ Clear</button>
+                        <button class="btn-danger-sm" id="clearAllBtn">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <h2>About</h2>
+            <div class="panel">
+                <div class="panel-head">
+                    <span class="panel-title">About</span>
                 </div>
-                <div class="card-body settings-body">
-                    <p><strong>StudyTrack v1.0</strong></p>
-                    <p>Professional attendance tracker for students</p>
-                    <p style="margin-top: 15px; font-size: 12px; color: #6b7280;">Works offline • 100% Private • No ads</p>
+                <div class="about-block">
+                    <div class="about-row">
+                        <span class="about-key">App</span>
+                        <span class="about-val">StudyTrack v2.0</span>
+                    </div>
+                    <div class="about-row">
+                        <span class="about-key">Developer</span>
+                        <span class="about-val">Umar J</span>
+                    </div>
+                    <div class="about-row">
+                        <span class="about-key">Storage</span>
+                        <span class="about-val">Local only · 100% private</span>
+                    </div>
+                    <div class="about-row">
+                        <span class="about-key">Mode</span>
+                        <span class="about-val">PWA · Works offline</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Footer -->
-        <footer class="app-footer">
-            <div class="footer-content">
-                <p>&copy; 2026 StudyTrack. Developed by <strong>Umar J</strong>. All rights reserved.</p>
-            </div>
-        </footer>
     </main>
 
     <!-- Add Subject Modal -->
-    <div id="subjectModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Add New Subject</h2>
-                <button class="modal-close">&times;</button>
+    <div class="modal-overlay" id="subjectModal">
+        <div class="modal-box">
+            <div class="modal-head">
+                <span class="modal-title">Add Subject</span>
+                <button class="modal-close-btn" id="cancelSubjectBtn">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h2>Add New Subject</h2>
-                    <span class="help-icon" title="Code: Optional identifier like CS101, MATH201 for organizing classes">?</span>
+            <div class="modal-body">
+                <div class="form-row">
+                    <label class="form-label">Subject Name <span class="req">*</span></label>
+                    <input type="text" id="subjectName" class="form-input" placeholder="e.g. Mathematics" maxlength="50">
                 </div>
-                <div class="card-body">
-                    <input type="text" id="subjectName" class="form-input" placeholder="Subject Name (e.g., Mathematics)" maxlength="50">
-                    <input type="text" id="subjectCode" class="form-input" placeholder="Code (e.g., MATH101) - Optional" maxlength="20">
-                    <div class="form-group">
-                        <label>Subject Color</label>
-                        <input type="color" id="subjectColor" class="form-input-color" value="#6366f1">
+                <div class="form-row">
+                    <label class="form-label">Code <span class="opt">(optional)</span></label>
+                    <input type="text" id="subjectCode" class="form-input" placeholder="e.g. MATH101" maxlength="20">
+                </div>
+                <div class="form-row">
+                    <label class="form-label">Color Tag</label>
+                    <div class="color-row">
+                        <input type="color" id="subjectColor" class="color-picker" value="#22c55e">
+                        <span class="color-hint">Used for subject identification</span>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button id="cancelSubjectBtn" class="btn btn-secondary">Cancel</button>
-                    <button id="saveSubjectBtn" class="btn btn-primary">Add Subject</button>
-                </div>
+            </div>
+            <div class="modal-foot">
+                <button class="btn-ghost" id="cancelSubjectBtn2">Cancel</button>
+                <button class="btn-accent" id="saveSubjectBtn">
+                    <i class="fas fa-plus"></i> Add Subject
+                </button>
+            </div>
         </div>
     </div>
 
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
     <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(() => {});
+        }
+    </script>
 </body>
 </html>
