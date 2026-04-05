@@ -10,15 +10,15 @@
   "background_color": "#080b0f",
   "icons": [
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%23080b0f'/%3E%3Crect x='42' y='42' width='108' height='108' rx='14' fill='none' stroke='%2322c55e' stroke-width='10'/%3E%3Cpath d='M68 96 L88 116 L124 76' stroke='%2322c55e' stroke-width='11' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E",
+      "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%23080b0f'/%3E%3Crect x='110' y='110' width='292' height='292' rx='36' fill='none' stroke='%2322c55e' stroke-width='26'/%3E%3Cpath d='M182 256 L232 308 L330 202' stroke='%2322c55e' stroke-width='30' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E",
+      "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ],
@@ -28,26 +28,14 @@
       "short_name": "Present",
       "description": "Go to attendance tab to mark present",
       "url": "/index.html",
-      "icons": [
-        {
-          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%230d1f12'/%3E%3Cpath d='M56 96 L84 124 L136 68' stroke='%2322c55e' stroke-width='16' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E",
-          "sizes": "192x192",
-          "type": "image/svg+xml"
-        }
-      ]
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "Mark Absent",
       "short_name": "Absent",
       "description": "Go to attendance tab to mark absent",
       "url": "/index.html",
-      "icons": [
-        {
-          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%231f0d0d'/%3E%3Cpath d='M68 68 L124 124 M124 68 L68 124' stroke='%23f87171' stroke-width='16' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E",
-          "sizes": "192x192",
-          "type": "image/svg+xml"
-        }
-      ]
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
     }
   ],
   "categories": ["productivity", "education"]
